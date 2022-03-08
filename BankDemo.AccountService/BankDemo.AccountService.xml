@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BankDemo.AccountService</name>
+    </assembly>
+    <members>
+        <member name="M:BankDemo.AccountService.Controllers.CustomerController.Post(BankDemo.AccountService.DataModel.Customer)">
+            <summary>
+            This API method is used to add new customer to the bank database.
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankDemo.AccountService.Controllers.CustomerController.GetAllCustomers">
+            <summary>
+            This API method is used to get all customers basic details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BankDemo.AccountService.Controllers.CustomerController.GetAllCustomers(System.String)">
+            <summary>
+            This API method is used to get all the information of the given customer id including the all transactions.
+            </summary>
+            <param name="customerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankDemo.AccountService.Controllers.TransactionController.Put(BankDemo.AccountService.DataModel.Transaction)">
+            <summary>
+            Add transaction is used to do transacation for given customer (To Credit amount select "TransactionAction" as "1" and to Debit amount select "TransactionAction" as "0")
+            </summary>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankDemo.AccountService.Controllers.TransactionController.GetAllTransactions(System.String)">
+            <summary>
+            This API method is used to get all the transactions for selected customer.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankDemo.AccountService.Controllers.TransactionController.Get">
+            <summary>
+            This API method is used to get all the transactions in the database.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Customer.Id">
+            Customer ID
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Customer.FirstName">
+            <summary>
+            First name of customer
+            </summary>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Customer.LastName">
+            <summary>
+            Last name of customer
+            </summary>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Customer.CreationDateTime">
+            <summary>
+            Date of customer account creation
+            </summary>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Customer.Balance">
+            <summary>
+            Customer account balance.
+            </summary>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Customer.Transactions">
+            <summary>
+            Transactions perfomed in the customer account.
+            </summary>
+        </member>
+        <member name="M:BankDemo.AccountService.DataModel.Customer.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:BankDemo.AccountService.DataModel.Customer.Validate">
+            <summary>
+            Customer data validation
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Transaction.TransactionId">
+            <summary>
+            Transaction unique id 
+            </summary>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Transaction.CustomerId">
+            <summary>
+            Customer id performed transaction.
+            </summary>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Transaction.Date">
+            <summary>
+            Transaction date time.
+            </summary>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Transaction.TransactionAction">
+            <summary>
+            Transaction action - 0 indicating "Debit" and 1 indicating "Credit". 
+            </summary>
+        </member>
+        <member name="P:BankDemo.AccountService.DataModel.Transaction.Amount">
+            <summary>
+            Transaction amount.
+            </summary>
+        </member>
+        <member name="M:BankDemo.AccountService.DataModel.Transaction.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:BankDemo.AccountService.DataModel.Transaction.#ctor(System.String,System.Double)">
+            <summary>
+            ctor
+            </summary>
+            <param name="custmerId"></param>
+            <param name="amount"></param>
+        </member>
+        <member name="M:BankDemo.AccountService.DataModel.Transaction.GetTransactionType">
+            <summary>
+            return transaction type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BankDemo.AccountService.DataModel.Transaction.Validate">
+            <summary>
+            Transaction data validation.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

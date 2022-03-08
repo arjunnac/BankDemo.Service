@@ -22,10 +22,7 @@ namespace BankDemo.AccountService.Controllers
         }
 
         /// <summary>
-        /// Add transaction is used to do transacation for given customer
-        /// To Credit amount select "TransactionAction" as "1"
-        /// To Debit amount select "TransactionAction" as "0"
-        /// Any other value will be ignored
+        /// Add transaction is used to do transacation for given customer (To Credit amount select "TransactionAction" as "1" and to Debit amount select "TransactionAction" as "0")
         /// </summary>
         /// <param name="transaction"></param>
         /// <returns></returns>
@@ -36,6 +33,11 @@ namespace BankDemo.AccountService.Controllers
             return new ResponseMessage(reply.Result.status, reply.Result.message);
         }
 
+        /// <summary>
+        /// This API method is used to get all the transactions for selected customer.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("customer/{id}", Name = "GetAllTransactionsOfCustomer")]
         public IActionResult GetAllTransactions(string id)
         {
@@ -46,6 +48,10 @@ namespace BankDemo.AccountService.Controllers
                 return NotFound();
         }
 
+        /// <summary>
+        /// This API method is used to get all the transactions in the database.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("All", Name = "GetAllTransactions")]
         public ActionResult<List<Transaction>> Get()
         {

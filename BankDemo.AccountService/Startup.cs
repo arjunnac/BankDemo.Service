@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace BankDemo.AccountService
 {
@@ -21,9 +22,6 @@ namespace BankDemo.AccountService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-
-            
             //services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             services.AddSingleton<AppDbContext>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -32,6 +30,8 @@ namespace BankDemo.AccountService
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "BankDemo.AccountService.xml");
+                c.IncludeXmlComments(filePath);
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BankDemo.AccountService", Version = "v1" });
             });
         }

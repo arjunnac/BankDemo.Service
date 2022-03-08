@@ -18,7 +18,11 @@ namespace BankDemo.AccountService.Controllers
             _logger = logger;
             _transactionService = transactionService;
         }
-
+        /// <summary>
+        /// This API method is used to add new customer to the bank database.
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         [HttpPost("Add", Name = "AddCustomers")]
         public IActionResult Post([FromBody] Customer customer)
         {
@@ -26,6 +30,10 @@ namespace BankDemo.AccountService.Controllers
             return Ok(new ResponseMessage(reply.Result.status, reply.Result.message));
         }
 
+        /// <summary>
+        /// This API method is used to get all customers basic details.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("All", Name = "GetAllCustomerDetails")]
         public IActionResult GetAllCustomers()
         {
@@ -36,6 +44,11 @@ namespace BankDemo.AccountService.Controllers
                 return NoContent();
         }
 
+        /// <summary>
+        /// This API method is used to get all the information of the given customer id including the all transactions.
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
         [HttpGet("{customerId}", Name = "GetCustomerDetails")]
         public IActionResult GetAllCustomers(string customerId)
         {

@@ -10,33 +10,65 @@ namespace BankDemo.AccountService.DataModel
 {
     public class Transaction
     {
+        /// <summary>
+        /// Transaction unique id 
+        /// </summary>
         [Key]
         public string TransactionId { get; }
-        public string CustomerId { get; set; }
-        public DateTime Date { get; }
-        public int TransactionAction { get; set; }
-        public double Amount { get; set; } = 0;
-        //public double PrevBalance { get; set; } = 0;
-        //public double CurrentBalance { get; set; } = 0;
 
+        /// <summary>
+        /// Customer id performed transaction.
+        /// </summary>
+        public string CustomerId { get; set; }
+
+        /// <summary>
+        /// Transaction date time.
+        /// </summary>
+        public DateTime Date { get; }
+
+        /// <summary>
+        /// Transaction action - 0 indicating "Debit" and 1 indicating "Credit". 
+        /// </summary>
+        public int TransactionAction { get; set; }
+
+        /// <summary>
+        /// Transaction amount.
+        /// </summary>
+        public double Amount { get; set; } = 0;
+        
+        /// <summary>
+        /// ctor
+        /// </summary>
         public Transaction()
         {
             TransactionId = Guid.NewGuid().ToString();
             Date = DateTime.UtcNow;
         }
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="custmerId"></param>
+        /// <param name="amount"></param>
         public Transaction(string custmerId, double amount) : this()
         {
             this.CustomerId = custmerId;
             this.Amount = amount;
         }
-        // helpers
+        
+        /// <summary>
+        /// return transaction type
+        /// </summary>
+        /// <returns></returns>
         public TransactionType GetTransactionType()
         {
             return (TransactionType)TransactionAction;
         }
 
-
+        /// <summary>
+        /// Transaction data validation.
+        /// </summary>
+        /// <returns></returns>
         public bool Validate()
         {
             if (string.IsNullOrEmpty(CustomerId))
