@@ -23,9 +23,10 @@ namespace BankDemo.AccountService
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+            // Singleton app db context to store in memory data.
             services.AddSingleton<AppDbContext>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<ITransactionsRepository, TransactionsRepository>();
+            services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            services.AddSingleton<ITransactionsRepository, TransactionsRepository>();
             services.AddTransient<ITransactionService, TransactionHandler>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -49,6 +50,9 @@ namespace BankDemo.AccountService
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseAuthorization();
 

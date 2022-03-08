@@ -41,11 +41,11 @@ namespace BankDemo.AccountService.Controllers
         [HttpGet("customer/{id}", Name = "GetAllTransactionsOfCustomer")]
         public IActionResult GetAllTransactions(string id)
         {
-            var trans = _transactionService.GetTransactionsOfUserAsync(id);
-            if (trans.Result != null)
-                return Ok(trans.Result);
+            var reply = _transactionService.GetTransactionsOfCustomerAsync(id);
+            if (reply.Result.status)
+                return Ok(reply.Result.transactions);
             else
-                return NotFound();
+                return BadRequest(new ResponseMessage(reply.Result.status, reply.Result.message));
         }
 
         /// <summary>
@@ -55,8 +55,13 @@ namespace BankDemo.AccountService.Controllers
         [HttpGet("All", Name = "GetAllTransactions")]
         public ActionResult<List<Transaction>> Get()
         {
-            var trans = _transactionService.GetAllTransactions();
-            return trans.Result.ToList<Transaction>();
+            var reply = _transactionService.GetAllTransactions();
+            //return trans.Result.transactions.ToList<Transaction>();
+
+            if (reply.Result.status)
+                return Ok(reply.Result.transactions);
+            else
+                return BadRequest(new ResponseMessage(reply.Result.status, reply.Result.message));
         }
     }
 }

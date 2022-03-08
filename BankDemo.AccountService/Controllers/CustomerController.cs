@@ -31,32 +31,32 @@ namespace BankDemo.AccountService.Controllers
         }
 
         /// <summary>
-        /// This API method is used to get all customers basic details.
+        /// This API method is used to get customers details of all customers in repository.
         /// </summary>
         /// <returns></returns>
         [HttpGet("All", Name = "GetAllCustomerDetails")]
         public IActionResult GetAllCustomers()
         {
-            var customers = _transactionService.GetAllCustomers();
-            if (customers?.Result != null)
-                return Ok(customers?.Result);
+            var reply = _transactionService.GetAllCustomers();
+            if (reply.Result.status)
+                return Ok(reply.Result.customers);
             else
-                return NoContent();
+                return BadRequest(new ResponseMessage(reply.Result.status, reply.Result.message));
         }
 
         /// <summary>
-        /// This API method is used to get all the information of the given customer id including the all transactions.
+        /// This API method is used to get all the information of the given customer id.
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
         [HttpGet("{customerId}", Name = "GetCustomerDetails")]
         public IActionResult GetAllCustomers(string customerId)
         {
-            var customers = _transactionService.GetAccountDetailsOfCustomerAsync(customerId);
-            if (customers?.Result != null)
-                return Ok(customers?.Result);
+            var reply = _transactionService.GetAccountDetailsOfCustomerAsync(customerId);
+            if (reply.Result.status)
+                return Ok(reply.Result.customerDetail);
             else
-                return NoContent();
+                return BadRequest(new ResponseMessage(reply.Result.status, reply.Result.message));
         }
     }
 }

@@ -36,7 +36,7 @@ namespace BankDemo.AccountService.DataRepository
             return (status, validationMessage);
         }
 
-        public async Task<Customer> GetAccountUserOfAsync(string id)
+        public async Task<Customer> GetAccountDetailsCustomerOfAsync(string id)
         {
             var customer = appDbContext.Customers.First(x => x.Id == id);
             customer.Transactions.Clear();

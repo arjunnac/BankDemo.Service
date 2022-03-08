@@ -13,13 +13,13 @@
         </member>
         <member name="M:BankDemo.AccountService.Controllers.CustomerController.GetAllCustomers">
             <summary>
-            This API method is used to get all customers basic details.
+            This API method is used to get customers details of all customers in repository.
             </summary>
             <returns></returns>
         </member>
         <member name="M:BankDemo.AccountService.Controllers.CustomerController.GetAllCustomers(System.String)">
             <summary>
-            This API method is used to get all the information of the given customer id including the all transactions.
+            This API method is used to get all the information of the given customer id.
             </summary>
             <param name="customerId"></param>
             <returns></returns>
@@ -131,6 +131,19 @@
             Transaction data validation.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:BankDemo.AccountService.Service.TransactionHandler">
+            <summary>
+            Handles transaction of the repositories
+            </summary>
+        </member>
+        <member name="M:BankDemo.AccountService.Service.TransactionHandler.#ctor(Microsoft.Extensions.Logging.ILogger{BankDemo.AccountService.Service.TransactionHandler},BankDemo.AccountService.DataRepository.ITransactionsRepository,BankDemo.AccountService.DataRepository.ICustomerRepository)">
+            <summary>
+            ctor
+            </summary>
+            <param name="logger"></param>
+            <param name="transactionsRepository"></param>
+            <param name="customerRepository"></param>
         </member>
     </members>
 </doc>
