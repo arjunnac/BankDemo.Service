@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  bankdemo.accountservice:
+    image: ${DOCKER_REGISTRY-}bankdemoaccountservice
+    build:
+      context: .
+      dockerfile: BankDemo.AccountService\Dockerfile
