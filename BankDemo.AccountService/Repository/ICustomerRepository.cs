@@ -10,5 +10,6 @@ namespace BankDemo.AccountService.DataRepository
         Task<(bool status, string message)> UpdateCustomerBalanceAsync(string id, double balance);
         Task<List<Customer>> GetAllCustomersAsync();
         Task<Customer> GetAccountDetailsCustomerOfAsync(string id);
+        Task<(bool status, string message)> RemoveCustomerAsync(string id);
     }
 }

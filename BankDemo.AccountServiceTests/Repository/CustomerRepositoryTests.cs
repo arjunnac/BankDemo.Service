@@ -60,7 +60,7 @@ namespace BankDemo.AccountService.DataRepository.Tests
 
             replay = repo.AddCustomerAsync(new Customer { Balance = 200, Id = "Test_Id1", FirstName = "Fname", LastName = "Lname" });
             Assert.IsFalse(replay.Result.status);
-            Assert.AreEqual(replay.Result.message, "Customer Test_Id1 can not be created.");
+            Assert.AreEqual(replay.Result.message, "CustomerId Test_Id1 is not available.");
         }
 
         [TestMethod]
@@ -90,5 +90,37 @@ namespace BankDemo.AccountService.DataRepository.Tests
             var customers = repo.GetAllCustomersAsync();
             Assert.IsTrue(customers.Result.Count == 3);
         }
+
+        [TestMethod]
+        public void RemoveCustomerAsync_should_remove_account_from_repository()
+        {
+            ICustomerRepository repo = new CustomerRepository(new AppDbContext());
+            var customer = new Customer() { FirstName = "Fname", LastName = "Lname" };
+            customer.Id = "TestIdX"; customer.Balance = 15;
+            repo.AddCustomerAsync(customer);
+
+            customer = new Customer() { FirstName = "FnameTwo", LastName = "LnameTwo" };
+            customer.Id = "TestIdY"; customer.Balance = 30;
+            repo.AddCustomerAsync(customer);
+
+            var reply = repo.RemoveCustomerAsync("TestIdX");
+            Assert.IsTrue(reply.Result.status);
+            Assert.AreEqual(reply.Result.message, "Customer account removed successfully.");
+        }
+
+        [TestMethod]
+        public void RemoveCustomerAsync_should_not_remove_acount_from_repository()
+        {
+            ICustomerRepository repo = new CustomerRepository(new AppDbContext());
+            var customer = new Customer() { FirstName = "Fname", LastName = "Lname" };
+            customer.Id = "TestIdX"; customer.Balance = 15;
+            repo.AddCustomerAsync(customer);
+
+            var reply = repo.RemoveCustomerAsync("TestIdY");
+            Assert.IsFalse(reply.Result.status);
+            Assert.AreEqual(reply.Result.message, "Customer id TestIdY does not exist.");
+        }
+
+
     }
 }

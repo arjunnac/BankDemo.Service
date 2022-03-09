@@ -18,6 +18,7 @@ namespace BankDemo.AccountService.Service
         Task<(bool status, string message, Customer customerDetail)> GetAccountDetailsOfCustomerAsync(string customerId);
         Task<(bool status, string message)> AddCustomer(Customer customer);
         Task<(bool status, string message, List<Customer> customers)> GetAllCustomers();
+        Task<(bool status, string message)> RemoveCustomerAsync(string customerId);
         #endregion
     }
 }

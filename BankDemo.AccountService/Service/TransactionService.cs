@@ -129,7 +129,6 @@ namespace BankDemo.AccountService.Service
                 _logger.LogError("AddCustomer - exception" + ex.Message);
                 return (false, $"Error to add account of selected customer  {customer.Id}");
             }
-
         }
 
         public async Task<(bool status, string message, List<Customer> customers)> GetAllCustomers()
@@ -143,6 +142,19 @@ namespace BankDemo.AccountService.Service
             {
                 _logger.LogError("GetAccountDetailsOfCustomerAsync - exception" + ex.Message);
                 return (false, $"Error to all the customer details", null);
+            }
+        }
+
+        public async Task<(bool status, string message)> RemoveCustomerAsync(string customerId)
+        {
+            try
+            {
+                return await _customerRepository.RemoveCustomerAsync(customerId);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError("AddCustomer - exception" + ex.Message);
+                return (false, $"Error to add account of selected customer  {customerId}");
             }
         }
         #endregion

@@ -19,7 +19,7 @@ namespace BankDemo.AccountService.Controllers
             _transactionService = transactionService;
         }
         /// <summary>
-        /// This API method is used to add new customer to the bank database.
+        /// This API method is used to add new customer account to the database.
         /// </summary>
         /// <param name="customer"></param>
         /// <returns></returns>
@@ -27,6 +27,18 @@ namespace BankDemo.AccountService.Controllers
         public IActionResult Post([FromBody] Customer customer)
         {
             var reply = _transactionService.AddCustomer(customer);
+            return Ok(new ResponseMessage(reply.Result.status, reply.Result.message));
+        }
+
+        /// <summary>
+        /// This API method is used to remove cutomer account from the database.
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        [HttpDelete("Remove/{customerId}", Name = "RemoveCustomerAccount")]
+        public IActionResult RemoveCustomerAccount(string customerId)
+        {
+            var reply = _transactionService.RemoveCustomerAsync(customerId);
             return Ok(new ResponseMessage(reply.Result.status, reply.Result.message));
         }
 

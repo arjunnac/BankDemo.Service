@@ -25,6 +25,11 @@ namespace BankDemo.AccountService.Service.Tests
             return new List<Customer>() { new Customer() };
         }
 
+        public async Task<(bool status, string message)> RemoveCustomerAsync(string id)
+        {
+            return id == "TestId" ? (true, "") : (false, "");
+        }
+
         public async Task<(bool status, string message)> UpdateCustomerBalanceAsync(string id, double balance)
         {
             return (true, "");

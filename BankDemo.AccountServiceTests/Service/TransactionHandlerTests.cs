@@ -41,6 +41,8 @@ namespace BankDemo.AccountService.Service.Tests
             Assert.IsTrue(res.Result.status);
         }
 
+
+
         [TestMethod]
         public void AddTransaction_should_add_transaction_when_amount_is_invalid_Test()
         {
@@ -74,7 +76,7 @@ namespace BankDemo.AccountService.Service.Tests
         }
 
         [TestMethod]
-        public void GetAccountDetailsOfCustomerAsync_should_return_customer_acc_detials_Test()
+        public void GetAccountDetailsOfCustomerAsync_should_return_customer_acc_details_Test()
         {
             var res = service.GetAccountDetailsOfCustomerAsync("TestId");
             Assert.IsTrue(res.Result.status);
@@ -89,12 +91,25 @@ namespace BankDemo.AccountService.Service.Tests
         }
 
         [TestMethod]
-        public void GetAllCustomers_should_return_customer_acc_detials_Test()
+        public void GetAllCustomers_should_return_customer_acc_details_Test()
         {
             var res = service.GetAllCustomers();
             Assert.IsTrue(res.Result.status);
             Assert.IsTrue(res.Result.customers.Count == 1);
         }
 
+        [TestMethod]
+        public void RemoveCustomer_should_remove_customer_acc_details_Test()
+        {
+            var res = service.RemoveCustomerAsync("TestId");
+            Assert.IsTrue(res.Result.status);
+        }
+
+        [TestMethod]
+        public void RemoveCustomer_should_not_remove_customer_acc_details_Test()
+        {
+            var res = service.RemoveCustomerAsync("TestId1");
+            Assert.IsFalse(res.Result.status);
+        }
     }
 }
